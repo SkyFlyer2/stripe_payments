@@ -21,13 +21,15 @@ class Item(models.Model):
         verbose_name='Стоимость',
         max_digits=19,
         decimal_places=2,
-        default_currency='RUR',
+        default_currency='RUB',
         blank=False,
         validators=[
             MinMoneyValidator(1),
             MaxMoneyValidator(1000000),
-            MinMoneyValidator({'RUR': 1}),
-            MaxMoneyValidator({'RUR': 1000000}),
+            MinMoneyValidator({'RUB': 1}),
+            MaxMoneyValidator({'RUB': 1000000}),
+            MinMoneyValidator({'EUR': 1, 'USD': 10000}),
+            MaxMoneyValidator({'EUR': 1, 'USD': 10000}),
         ]
     )
 
