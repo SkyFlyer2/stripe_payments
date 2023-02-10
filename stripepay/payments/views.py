@@ -34,9 +34,7 @@ def item_detail(request, id):
 
 def item_purchase(request, id):
     item = get_object_or_404(Item, pk=id)
-    print('item_purchase', item.price)
-#    stripe_amount = item.price.amount * 100    # перевод в центы/копейки
-    stripe_amount = str(int(round(item.price.amount, 2) * 100)) # перевод в центы/копейки
+    stripe_amount = item.price.amount * 100 # перевод в центы/копейки
     if request.method == 'GET':
         domain_url = settings.DOMAIN_URL
         stripe.api_key = settings.STRIPE_SECRET_KEY

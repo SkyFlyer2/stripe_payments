@@ -20,7 +20,7 @@ class Item(models.Model):
     price = MoneyField(
         verbose_name='Стоимость',
         max_digits=19,
-        decimal_places=2,
+        decimal_places=0,
         default_currency='RUB',
         blank=False,
         validators=[
@@ -28,7 +28,7 @@ class Item(models.Model):
             MaxMoneyValidator(1000000),
             MinMoneyValidator({'RUB': 1}),
             MaxMoneyValidator({'RUB': 1000000}),
-            MinMoneyValidator({'EUR': 1, 'USD': 10000}),
+            MinMoneyValidator({'EUR': 1, 'USD': 1}),
             MaxMoneyValidator({'EUR': 1, 'USD': 10000}),
         ]
     )
