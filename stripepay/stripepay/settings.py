@@ -9,7 +9,7 @@ load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = str(os.getenv('SECRET_KEY', default='*'))
-STRIPE_PUBLISHABLE_KEY = 'pk_test_51MZhjKGkAqJioaEJKMVopByX3LxoEk83hxXXCJxhihmrcz7Ul6iKEU5C5j2xfscuKLlXx5I5kQDSm1vzVJwYUJPL00qs7jMGrb'
+STRIPE_PUBLISHABLE_KEY = str(os.getenv('STRIPE_PUBLISHABLE_KEY', default='*'))
 STRIPE_SECRET_KEY = str(os.getenv('STRIPE_SECRET_KEY', default='*'))
 
 DEBUG = True
