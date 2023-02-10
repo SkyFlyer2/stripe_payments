@@ -12,10 +12,10 @@ SECRET_KEY = str(os.getenv('SECRET_KEY', default='*'))
 STRIPE_PUBLISHABLE_KEY = str(os.getenv('STRIPE_PUBLISHABLE_KEY', default='*'))
 STRIPE_SECRET_KEY = str(os.getenv('STRIPE_SECRET_KEY', default='*'))
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
-DOMAIN_URL = 'http://localhost:8000/'
+DOMAIN_URL = 'http://158.160.4.20/'
 
 INSTALLED_APPS = [
     'django.contrib.admin',
