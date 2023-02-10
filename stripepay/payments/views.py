@@ -1,7 +1,6 @@
 from django.views.generic.base import TemplateView
-from django.shortcuts import redirect, render, get_object_or_404
+from django.shortcuts import render, get_object_or_404
 from django.http.response import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
 
 import stripe
 
@@ -9,15 +8,15 @@ from django.conf import settings
 from .models import Item
 
 
-class MainPage(TemplateView):
+class main_page(TemplateView):
     template_name = 'index.html'
 
 
-class SuccessView(TemplateView):
+class order_success(TemplateView):
     template_name = 'success.html'
 
 
-class CancelledView(TemplateView):
+class order_cancelled(TemplateView):
     template_name = 'cancelled.html'
 
 
@@ -33,7 +32,6 @@ def item_detail(request, id):
     )
 
 
-@csrf_exempt
 def item_purchase(request, id):
     item = get_object_or_404(Item, pk=id)
     print('item_purchase', item.price)
