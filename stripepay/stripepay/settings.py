@@ -3,8 +3,14 @@
 import os
 from pathlib import Path
 
+from dotenv import load_dotenv
+
+load_dotenv()
+
 BASE_DIR = Path(__file__).resolve().parent.parent
-SECRET_KEY = 'django-insecure-_=_8p+tj38-3)^h)-8)$l@nh6#i&-#tc3_)zq46e8*c)lx%55y'
+SECRET_KEY = str(os.getenv('SECRET_KEY', default='*'))
+STRIPE_PUBLISHABLE_KEY = 'pk_test_51MZhjKGkAqJioaEJKMVopByX3LxoEk83hxXXCJxhihmrcz7Ul6iKEU5C5j2xfscuKLlXx5I5kQDSm1vzVJwYUJPL00qs7jMGrb'
+STRIPE_SECRET_KEY = str(os.getenv('STRIPE_SECRET_KEY', default='*'))
 
 DEBUG = True
 
@@ -86,5 +92,6 @@ USE_TZ = True
 AUTH_USER_MODEL = 'users.User'
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATICFILES_DIRS = [BASE_DIR / 'static']
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
