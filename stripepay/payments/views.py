@@ -37,8 +37,10 @@ def item_detail(request, id):
 def item_purchase(request, id):
     item = get_object_or_404(Item, pk=id)
     print('item_purchase', item.price)
+#    stripe_amount = item.price.amount * 100    # перевод в центы/копейки
+    stripe_amount = str(int(round(item.price.amount, 2) * 100)) # перевод в центы/копейки
     if request.method == 'GET':
-        domain_url = 'http://localhost:8000/'
+        domain_url = settings.DOMAIN_URL
         stripe.api_key = settings.STRIPE_SECRET_KEY
         try:
             checkout_session = stripe.checkout.Session.create(
@@ -51,7 +53,7 @@ def item_purchase(request, id):
                     'price_data': {
                         'currency': item.price.currency,
                         'product_data': {'name': item.name},
-                        'unit_amount': 20000,
+                        'unit_amount': stripe_amount,
                         },
                     'quantity': 1,
                     },

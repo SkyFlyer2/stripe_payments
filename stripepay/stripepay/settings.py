@@ -15,6 +15,7 @@ STRIPE_SECRET_KEY = str(os.getenv('STRIPE_SECRET_KEY', default='*'))
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
+DOMAIN_URL = 'http://localhost:8000/'
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -39,7 +40,6 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'stripepay.urls'
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -57,17 +57,12 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'stripepay.wsgi.application'
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
-
-# Password validation
-# https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -92,6 +87,9 @@ USE_TZ = True
 AUTH_USER_MODEL = 'users.User'
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [BASE_DIR / 'static']
+if not DEBUG:
+    STATIC_ROOT = [BASE_DIR / 'static/']
+if DEBUG:
+    STATICFILES_DIRS = [BASE_DIR / 'static']
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
