@@ -77,6 +77,15 @@ python manage.py runserver
 Для удобства и быстрого запуска проекта был подготовлен образ Docker и загружен на DockerHub.
 
 * Выполните вход на удаленный сервер
+
+* Команды для развертывания образа:
+
+```
+sudo docker pull skyflyer1/stripe_payments:latest
+sudo docker stop $(sudo docker ps -a -q)
+sudo docker run --rm -d skyflyer1/stripe_payments:latest
+```
+
 * Запуск миграций, создание суперюзера, сбор статики и заполнение БД:
 ```
 docker-compose exec infra_web_1 python manage.py migrate
