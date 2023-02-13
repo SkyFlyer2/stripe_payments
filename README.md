@@ -83,7 +83,7 @@ docker-compose exec infra_web_1 python manage.py migrate
 docker-compose exec infra_web_1 python manage.py createsuperuser
 docker-compose exec infra_web_1 python manage.py collectstatic --no-input 
 ```
-Проект доступен по адресу http://<IP адрес сервера>/
+* Проект доступен по адресу http://<IP адрес сервера>/
 
 **Доступные адреса проекта:**
 
