@@ -11,5 +11,32 @@
       Демонстрационная система осуществления платежей.
       <a href="mailto:orders@example.com">orders@example.com</a>.
     </p>
+    {% block content %}
+    <h3>Список товаров</h3>
+    <div class="text">ID</div>
+    <div class="clear"></div>
+    <div class="text">Наименование</div>
+    <div class="clear"></div>
+    <div class="text">Описание</div>
+    <div class="clear"></div>
+    <div class="text">Стоимость</div>
+      {% for item in page_obj %}
+      <article>
+        <ul>
+          <li>
+            <p>№: {{ item.id }} - <a href="/item/{{item.id}} ">{{ item.name }}</a> </p>
+          </li>
+          <li>
+            {{ item.description }}
+          </li>
+          <li>
+            Стоимость: {{ item.price }}
+          </li>
+
+        </ul>
+      </article>          
+      {% endfor %}
+    {% endblock %}
+    
   </body>
 </html>

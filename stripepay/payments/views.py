@@ -8,8 +8,10 @@ from django.conf import settings
 from .models import Item
 
 
-class main_page(TemplateView):
-    template_name = 'index.html'
+def index(request):
+#    template_name = 'index.html'
+    item_list = Item.objects.all()  #select_related('name', 'price')
+    return render(request, 'index.html', {'page_obj': item_list})
 
 
 class order_success(TemplateView):

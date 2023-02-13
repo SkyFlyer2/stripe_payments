@@ -12,14 +12,14 @@ SECRET_KEY = str(os.getenv('SECRET_KEY', default='*'))
 STRIPE_PUBLISHABLE_KEY = str(os.getenv('STRIPE_PUBLISHABLE_KEY', default='*'))
 STRIPE_SECRET_KEY = str(os.getenv('STRIPE_SECRET_KEY', default='*'))
 
-DEBUG = False
+DEBUG = str(os.getenv('DEBUG_MODE', default='True'))
 
 ALLOWED_HOSTS = ['*']
 
 if not DEBUG:
     DOMAIN_URL = 'http://158.160.4.20/'
 if DEBUG:
-    DOMAIN_URL = 'http://127.0.0.1/'
+    DOMAIN_URL = 'http://127.0.0.1:8000/'
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -83,7 +83,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 CSRF_TRUSTED_ORIGINS = ['http://158.160.4.20']
-
 
 LANGUAGE_CODE = 'ru-RU'
 TIME_ZONE = 'Europe/Moscow'

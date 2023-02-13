@@ -1,11 +1,8 @@
 from django.db import models
-from django.contrib.auth import get_user_model
 
 from djmoney.models.fields import MoneyField
 from djmoney.models.validators import MaxMoneyValidator, MinMoneyValidator
 
-
-# User = get_user_model()
 
 class Item(models.Model):
     name = models.CharField(
