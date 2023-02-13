@@ -40,7 +40,7 @@ python -m pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-Создайте аккаунт на [сайте](https://dashboard.stripe.com/register). платежной системы.
+Создайте аккаунт на [сайте](https://dashboard.stripe.com/register) платежной системы.
 В разделе Developers/Api keys находятся ключи для тестового доступа к API системы. Скопируйте их.
 В директории "stripepay" из шаблона ".env.template" создайте файл ".env" и пропишите в него полученные ранее ключи для доступа к API платежной системы (STRIPE_PUBLISHABLE_KEY и STRIPE_SECRET_KEY).
 Также задайте значение ключа для Django (SECRET_KEY).
