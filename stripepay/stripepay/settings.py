@@ -15,7 +15,11 @@ STRIPE_SECRET_KEY = str(os.getenv('STRIPE_SECRET_KEY', default='*'))
 DEBUG = False
 
 ALLOWED_HOSTS = ['*']
-DOMAIN_URL = 'http://158.160.4.20/'
+
+if not DEBUG:
+    DOMAIN_URL = 'http://158.160.4.20/'
+if DEBUG:
+    DOMAIN_URL = 'http://127.0.0.1/'
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -88,8 +92,8 @@ AUTH_USER_MODEL = 'users.User'
 
 STATIC_URL = 'static/'
 if not DEBUG:
-    STATIC_ROOT = [BASE_DIR / 'static/']
+    STATIC_ROOT = str(BASE_DIR / 'static/')
 if DEBUG:
-    STATICFILES_DIRS = [BASE_DIR / 'static']
+    STATICFILES_DIRS = [str(BASE_DIR / 'static')]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
