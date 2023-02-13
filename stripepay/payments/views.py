@@ -30,7 +30,7 @@ def item_detail(request, id):
         {'buy_item': item,
          'item_id': id,
          'stripe_key': settings.STRIPE_PUBLISHABLE_KEY,
-         }
+        }
     )
 
 
