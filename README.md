@@ -79,46 +79,40 @@ python manage.py runserver
 * Выполните вход на удаленный сервер
 
 * Из каталога infra скопируйте на удаленный сервер файлы docker-compose.yml и nginx/default.conf.
-
+```
+scp docker-compose.yml <username>@<host>:/home/<username>/docker-compose.yml
+scp -r nginx/default.conf <username>@<host>:/home/<username>/nginx/default.conf
+```
+```
 /home/имя_пользователя/nginx/default.conf
-/home/имя_пользователя/nginx/docker-compose.yaml
+/home/имя_пользователя/nginx/docker-compose.yml
+```
 
-В файле infra/nginx.conf пропишите IP-адрес сервера:
+* В файле infra/default.conf пропишите IP-адрес сервера:
 
 ```
 server_name xxx.xxx.xxx.xxx;
 ```
 
-Из каталога infra скопируйте на удаленный сервер файлы  docker-compose.yml и default.conf.
+* Cоздайте файл ```.env```:
 
-scp docker-compose.yml <username>@<host>:/home/<username>/docker-compose.yml
-scp -r nginx.conf <username>@<host>:/home/<username>/nginx/nginx.conf
-
-
-Cоздайте файл ```.env```:
-
-```bash 
-touch .env
+```
+bash 
+touch stripepay/.env
 ```
 
-Заполните ```.env``` файл переменными окружения по примеру:
+* Заполните ```.env``` файл переменными окружения по примеру:
 ```bash 
 echo SECRET_KEY=<уникальный токен> >> .env
-echo DB_ENGINE=django.db.backends.postgresql >> .env
-echo DB_NAME=<название базы данных postgre sql> l >> .env
-echo POSTGRES_USER=<имя пользователя>  >> .env
-echo POSTGRES_PASSWORD=<ваш пароль> >> .env
-echo DB_HOST=db  >> .env
-echo DB_PORT=5432  >> .env
+echo STRIPE_PUBLISHABLE_KEY=<публичный ключ stripe> >> .env
+echo STRIPE_SECRET_KEY=<секретный ключ stripe> >> .env
 ```
 
-Теперь можно установить и запустить приложение в контейнерах (контейнеры backend/frontend загружаются из DockerHub):
-```bash 
-sudo docker-compose up -d
+* Теперь можно установить и запустить приложение в контейнерах (контейнеры web, nginx и python загружаются из DockerHub):
 ```
-
-
-
+bash 
+sudo docker-compose up -d --build
+```
 
 * Запуск миграций, создание суперюзера, сбор статики и заполнение БД:
 ```
