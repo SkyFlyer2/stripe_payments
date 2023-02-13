@@ -1,16 +1,14 @@
-from django.views.generic.base import TemplateView
-from django.shortcuts import render, get_object_or_404
-from django.http.response import JsonResponse
-
 import stripe
-
 from django.conf import settings
+from django.http.response import JsonResponse
+from django.shortcuts import get_object_or_404, render
+from django.views.generic.base import TemplateView
+
 from .models import Item
 
 
 def index(request):
-#    template_name = 'index.html'
-    item_list = Item.objects.all()  #select_related('name', 'price')
+    item_list = Item.objects.all()
     return render(request, 'index.html', {'page_obj': item_list})
 
 
