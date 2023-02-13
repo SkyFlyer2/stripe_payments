@@ -78,13 +78,47 @@ python manage.py runserver
 
 * Выполните вход на удаленный сервер
 
-* Команды для развертывания образа:
+* Из каталога infra скопируйте на удаленный сервер файлы docker-compose.yml и nginx/default.conf.
+
+/home/имя_пользователя/nginx/default.conf
+/home/имя_пользователя/nginx/docker-compose.yaml
+
+В файле infra/nginx.conf пропишите IP-адрес сервера:
 
 ```
-sudo docker pull skyflyer1/stripe_payments:latest
-sudo docker stop $(sudo docker ps -a -q)
-sudo docker run --rm -d skyflyer1/stripe_payments:latest
+server_name xxx.xxx.xxx.xxx;
 ```
+
+Из каталога infra скопируйте на удаленный сервер файлы  docker-compose.yml и default.conf.
+
+scp docker-compose.yml <username>@<host>:/home/<username>/docker-compose.yml
+scp -r nginx.conf <username>@<host>:/home/<username>/nginx/nginx.conf
+
+
+Cоздайте файл ```.env```:
+
+```bash 
+touch .env
+```
+
+Заполните ```.env``` файл переменными окружения по примеру:
+```bash 
+echo SECRET_KEY=<уникальный токен> >> .env
+echo DB_ENGINE=django.db.backends.postgresql >> .env
+echo DB_NAME=<название базы данных postgre sql> l >> .env
+echo POSTGRES_USER=<имя пользователя>  >> .env
+echo POSTGRES_PASSWORD=<ваш пароль> >> .env
+echo DB_HOST=db  >> .env
+echo DB_PORT=5432  >> .env
+```
+
+Теперь можно установить и запустить приложение в контейнерах (контейнеры backend/frontend загружаются из DockerHub):
+```bash 
+sudo docker-compose up -d
+```
+
+
+
 
 * Запуск миграций, создание суперюзера, сбор статики и заполнение БД:
 ```
