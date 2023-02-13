@@ -96,8 +96,7 @@ server_name xxx.xxx.xxx.xxx;
 
 * Cоздайте файл ```.env```:
 
-```
-bash 
+```bash 
 touch stripepay/.env
 ```
 
@@ -109,8 +108,7 @@ echo STRIPE_SECRET_KEY=<секретный ключ stripe> >> .env
 ```
 
 * Теперь можно установить и запустить приложение в контейнерах (контейнеры web, nginx и python загружаются из DockerHub):
-```
-bash 
+```bash 
 sudo docker-compose up -d --build
 ```
 
