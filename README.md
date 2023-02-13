@@ -72,12 +72,18 @@ python manage.py runserver
 
 В личном кабинете Stripe вы можете посмотреть данные платежа.
 
-### Развертывание на удаленном сервере
+#### Развертывание на удаленном сервере
 
 Для удобства и быстрого запуска проекта был подготовлен образ Docker и загружен на DockerHub.
 
-
-
+* Выполните вход на удаленный сервер
+* Запуск миграций, создание суперюзера, сбор статики и заполнение БД:
+```
+docker-compose exec infra_web_1 python manage.py migrate
+docker-compose exec infra_web_1 python manage.py createsuperuser
+docker-compose exec infra_web_1 python manage.py collectstatic --no-input 
+```
+Проект доступен по адресу http://<IP адрес сервера>/
 
 **Доступные адреса проекта:**
 
