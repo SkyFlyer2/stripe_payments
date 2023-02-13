@@ -2,7 +2,7 @@ version: '3'
 
 services:
   web:
-    image: skyflyer1/stripe_pay:latest
+    build: ../stripepay
     restart: always
     volumes:
       - static_value:/app/static/

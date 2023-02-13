@@ -2,13 +2,13 @@ version: '3'
 
 services:
   web:
-    build: ../stripepay
+    image: skyflyer1/stripe_pay:latest
     restart: always
     volumes:
       - static_value:/app/static/
       - media_value:/app/media/
     env_file:
-      - ../stripepay/.env
+      - stripepay/.env
 
   nginx:
     image: nginx:1.21.3-alpine
