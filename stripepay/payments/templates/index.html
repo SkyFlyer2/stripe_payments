@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html>
   <head>
     <meta charset="utf-8">
@@ -9,34 +10,36 @@
     <h1>Stripe Payments</h1>
     <p>
       Демонстрационная система осуществления платежей.
-      <a href="mailto:orders@example.com">orders@example.com</a>.
     </p>
-    {% block content %}
+    <p>
+      Автор: Ковалев Владислав
+    </p>
+    <p>
+      <a href="https://t.me/skyflyer1">@skyflyer1</a>
+    </p>
+    <p>
+      <a href="mailto:orders@example.com">textgame-vlad@yandex.ru</a>
+    </p>
     <h3>Список товаров</h3>
-    <div class="text">ID</div>
-    <div class="clear"></div>
-    <div class="text">Наименование</div>
-    <div class="clear"></div>
-    <div class="text">Описание</div>
-    <div class="clear"></div>
-    <div class="text">Стоимость</div>
+    {% block content %}
+      <table align="left">    
+        <tbody>
+        <tr>
+          <th>ID</th>
+          <th>Наименование</th>
+          <th>Описание</th>
+          <th>Стоимость</th>
+        </tr>
       {% for item in page_obj %}
-      <article>
-        <ul>
-          <li>
-            <p>№: {{ item.id }} - <a href="/item/{{item.id}} ">{{ item.name }}</a> </p>
-          </li>
-          <li>
-            {{ item.description }}
-          </li>
-          <li>
-            Стоимость: {{ item.price }}
-          </li>
-
-        </ul>
-      </article>          
+        <tr>
+        <td>{{ item.id }}</td>
+        <td><a href="/item/{{item.id}}">{{ item.name }}</a>
+        </td><td>{{ item.description }}</td>
+        <td>{{ item.price }}</td>
+        </tr>
       {% endfor %}
+        </tbody>
+      </table>
     {% endblock %}
-    
   </body>
 </html>
