@@ -12,8 +12,8 @@ SECRET_KEY = str(os.getenv('SECRET_KEY', default='*'))
 STRIPE_PUBLISHABLE_KEY = str(os.getenv('STRIPE_PUBLISHABLE_KEY', default='*'))
 STRIPE_SECRET_KEY = str(os.getenv('STRIPE_SECRET_KEY', default='*'))
 
-DEBUG = False #str(os.getenv('DEBUG_MODE', default='True'))
-
+DEBUG = str(os.getenv('DEBUG_MODE', default='True'))
+print(DEBUG)
 ALLOWED_HOSTS = ['*']
 
 if not DEBUG:
