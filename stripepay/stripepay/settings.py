@@ -82,6 +82,8 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+CSRF_TRUSTED_ORIGINS = ['http://158.160.4.20']
+
 
 LANGUAGE_CODE = 'ru-RU'
 TIME_ZONE = 'Europe/Moscow'
